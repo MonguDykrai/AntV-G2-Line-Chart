@@ -1,12 +1,31 @@
 import React from 'react'
-import DataSet from '@antv/data-set'
+// import DataSet from '@antv/data-set'
 import { Chart } from '@antv/g2'
 
 export default class App extends React.Component {
   componentDidMount() {
     var chart = new Chart({
-      
+      container: 'container',
+      autoFit: true,
+      height: 400,
     })
+
+    chart.data([
+      { city: '杭州', sale: 100 },
+      { city: '上海', sale: 110 },
+      { city: '山东', sale: 105 },
+    ])
+
+    chart.line().position('city*sale').color('red')
+
+    chart.scale({
+      sale: {
+        min: 0,
+        max: 360,
+      },
+    })
+
+    chart.render()
 
     // fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/rain-flow.json')
     //   .then((res) => res.json())
